@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const TodoItem = ({ todo, onToggleCompleted, onDeleteTodo }) => {
+const TodoItem = ({ todo, onToggleCompleted, onDeleteTodo, onEditTodo }) => {
   return (
     <li
       style={{
@@ -10,10 +10,11 @@ const TodoItem = ({ todo, onToggleCompleted, onDeleteTodo }) => {
         border: "1px solid white",
         padding: "10px",
         borderRadius: "8px",
-        backgroundColor: todo.completed ? "#2d3d3d" : "transparent",
+        backgroundColor: todo.completed ? "#000080" : "#000050", // navy background
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
+        color: "white", // white text for better contrast
       }}
     >
       <div
@@ -38,13 +39,27 @@ const TodoItem = ({ todo, onToggleCompleted, onDeleteTodo }) => {
             style={{
               padding: "5px 10px",
               borderRadius: "4px",
-              backgroundColor: todo.completed ? "salmon" : "lightgreen",
-              color: "#282c34",
+              backgroundColor: todo.completed ? "#ff6b6b" : "#4CAF50",
+              color: "white",
+              border: "none",
+              cursor: "pointer",
+              fontWeight: "bold"
+            }}
+          >
+            {todo.completed ? "Belum Selesai" : "Selesai"}
+          </button>
+          <button
+            onClick={() => onEditTodo(todo)}
+            style={{
+              padding: "5px 10px",
+              borderRadius: "4px",
+              backgroundColor: "#FFA500",
+              color: "white",
               border: "none",
               cursor: "pointer",
             }}
           >
-            {todo.completed ? "Belum Selesai" : "Selesai"}
+            Edit
           </button>
           <button
             onClick={() => onDeleteTodo(todo.id)}
